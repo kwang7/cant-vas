@@ -8,22 +8,48 @@ ctx.fillRect(0,0,600,600);
 
 
 var draw = function(e){
+    /*
     if (mode){
 	drawCircle(e);
     }
     else{
 	drawSquare(e);
     }
+    */
+    drawCircle(e);
 }
 
+var x
+var y
+var circle = 0;
 //draw a happy face!
 var drawCircle = function(e){
-    //the head
-    ctx.fillStyle = "#ffffff"
-    ctx.beginPath()
-    ctx.arc(e.offsetX, e.offsetY, 60, 0, 2* Math.PI)
-    ctx.fill()
-    ctx.closePath()
+    if (circle == 0){ 
+	ctx.fillStyle = "#ff9999"
+	ctx.beginPath()
+	ctx.arc(e.offsetX, e.offsetY, 20, 0, 2* Math.PI)
+	ctx.fill()
+	ctx.stroke()
+	circle+=1
+	console.log(circle)
+	x = e.offsetX;
+	y = e.offsetY;
+    }
+    else{
+	console.log(circle)
+	ctx.moveTo(e.offsetX,e.offsetY)
+	ctx.lineTo(x,y)
+	ctx.stroke()
+	ctx.closePath()
+	ctx.beginPath()
+	ctx.arc(e.offsetX, e.offsetY, 20, 0, 2* Math.PI)
+	ctx.stroke()
+	ctx.fill()
+	x = e.offsetX;
+	y = e.offsetY;
+    }
+    
+    /*
     //the mouth
     ctx.fillStyle = "#ff7777";
     ctx.beginPath()
@@ -40,6 +66,7 @@ var drawCircle = function(e){
     ctx.arc(e.offsetX - 15, e.offsetY-25, 8, 0, 2* Math.PI)
     ctx.fill()
     ctx.closePath()
+    */
     }
 
 //a square head
@@ -83,6 +110,7 @@ var clear = function(e){
     console.log("cleared");
     ctx.fillStyle = "#fff8dc"
     ctx.fillRect(0,0,600,600);
+    circle = 0;
 }
 
 var cler = document.getElementById("clr")
