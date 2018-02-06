@@ -22,14 +22,16 @@ var draw = function(e){
 var x
 var y
 var circle = 0;
-//draw a happy face!
+//draw a circle!! and connect the circle to the last circle if ther was a last cicle
 var drawCircle = function(e){
+    ctx.strokeStyle="#800020"
     if (circle == 0){ 
 	ctx.fillStyle = "#ff9999"
 	ctx.beginPath()
 	ctx.arc(e.offsetX, e.offsetY, 20, 0, 2* Math.PI)
-	ctx.fill()
 	ctx.stroke()
+	ctx.fill()
+	//ctx.closePath()
 	circle+=1
 	console.log(circle)
 	x = e.offsetX;
@@ -37,6 +39,7 @@ var drawCircle = function(e){
     }
     else{
 	console.log(circle)
+	ctx.beginPath()
 	ctx.moveTo(e.offsetX,e.offsetY)
 	ctx.lineTo(x,y)
 	ctx.stroke()
